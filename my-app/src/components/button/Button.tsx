@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import styled, { css } from "styled-components";
 
 export interface ButtonStyle {
-  $width: string;
-  $height: string;
+  $width?: string;
+  $height?: string;
   $bgColor?: string;
   $hasBorder?: boolean;
   $borderColor?: string;
@@ -13,17 +13,46 @@ export interface ButtonStyle {
 }
 
 export interface ButtonFunction {
-  onClick: () => void;
+  onClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }
 
 export interface ButtonProps extends ButtonStyle, ButtonFunction {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
-export function Button(props: ButtonProps) {
-  return <StyledButton {...props}>{props.children}</StyledButton>;
+export function Button({
+  $width = "100px",
+  $height = "40px",
+  $bgColor = "transparent",
+  $hasBorder = false,
+  $borderColor = "black",
+  $borderRadius = "4px",
+  $fontSize = "inherit",
+  $fontColor = "black",
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+  children,
+}: ButtonProps) {
+  return (
+    <StyledButton
+      $width={$width}
+      $height={$height}
+      $bgColor={$bgColor}
+      $hasBorder={$hasBorder}
+      $borderColor={$borderColor}
+      $borderRadius={$borderRadius}
+      $fontSize={$fontSize}
+      $fontColor={$fontColor}
+      onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      {children}
+    </StyledButton>
+  );
 }
 
 const StyledButton = styled.button<ButtonStyle>`
@@ -34,6 +63,13 @@ const StyledButton = styled.button<ButtonStyle>`
   font-family: inherit;
   line-height: inherit;
   cursor: pointer;
+  &:hover {
+    filter: brightness(150%);
+  }
+
+  &:active {
+    filter: brightness(80%);
+  }
   ${({
     $width,
     $height,
@@ -46,10 +82,10 @@ const StyledButton = styled.button<ButtonStyle>`
   }) => css`
     width: ${$width};
     height: ${$height};
-    background-color: ${$bgColor ? $bgColor : "transparent"};
+    background-color: ${$bgColor};
     border: ${$hasBorder ? `1px solid ${$borderColor}` : "none"};
     border-radius: ${$borderRadius};
-    font-size: ${$fontSize ? $fontSize : "inherit"};
+    font-size: ${$fontSize};
     color: ${$fontColor};
   `}
 `;

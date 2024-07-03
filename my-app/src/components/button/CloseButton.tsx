@@ -1,47 +1,49 @@
-import { ReactNode, RefObject } from "react";
-import { Button, ButtonStyle } from "./Button";
+import { Button } from "./Button";
+import { closeIcon } from "../../assets/images";
 
-interface CloseButtonProps extends ButtonStyle {
-  children: ReactNode;
-  closeTarget: RefObject<HTMLElement>;
+
+interface CloseButtonProps {
+  size?: "sx" | "s" | "m" | "l" | "xl";
+  $bgColor?: string;
+  onClick?: () => void;
 }
 
-export function CloseButton({
-  $width,
-  $height,
-  $bgColor,
-  $hasBorder,
-  $borderColor,
-  $borderRadius,
-  $fontSize,
-  $fontColor,
-  children,
-  closeTarget,
-}: CloseButtonProps) {
-  const targetClose = () => {
-    if (closeTarget.current) {
-      console.log(closeTarget.current);
-			closeTarget.current.style.cssText = `
-				display: none;
-			`;
-    }
+export function CloseButton({ size = "m", $bgColor, onClick }: CloseButtonProps) {
+  let buttonWidth: string = "";
+  let buttonHeight: string = "";
 
-    // closeTarget.current.
-  };
+  switch (size) {
+    case "sx":
+      buttonWidth = "2rem";
+      buttonHeight = "2rem";
+      break;
+    case "s":
+      buttonWidth = "3rem";
+      buttonHeight = "3rem";
+      break;
+    case "m":
+      buttonWidth = "4rem";
+      buttonHeight = "4rem";
+      break;
+    case "l":
+      buttonWidth = "5rem";
+      buttonHeight = "5rem";
+      break;
+    case "xl":
+      buttonWidth = "6rem";
+      buttonHeight = "6rem";
+      break;
+  }
 
   return (
     <Button
-      $width={$width}
-      $height={$height}
+      $width={buttonWidth}
+      $height={buttonHeight}
       $bgColor={$bgColor}
-      $hasBorder={$hasBorder}
-      $borderColor={$borderColor}
-      $borderRadius={$borderRadius}
-      $fontSize={$fontSize}
-      $fontColor={$fontColor}
-      onClick={targetClose}
+      $borderRadius="50%"
+      onClick={onClick}
     >
-      {children}
+      <img width="35%" height="35%" src={closeIcon} alt="closeIcon" />
     </Button>
   );
 }
