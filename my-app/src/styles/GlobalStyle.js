@@ -51,6 +51,7 @@ ${reset}
 		color: inherit;
 	}
 	button {
+		padding: 0;
 		border: none;
 		background: transparent;
 		font-size: inherit;
