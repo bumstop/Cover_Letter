@@ -23,21 +23,21 @@ export const CloseButton_xs: Story = {
 };
 export const CloseButton_s: Story = {
   args: {
-    size: "s"
+    size: "s",
   },
 };
 export const CloseButton_m: Story = {
   args: {
-    size: "m"
+    size: "m",
   },
 };
 export const CloseButton_l: Story = {
   args: {
-    size: "l"
+    size: "l",
   },
 };
 export const CloseButton_xl: Story = {
   args: {
-    size: "xl"
+    size: "xl",
   },
 };
