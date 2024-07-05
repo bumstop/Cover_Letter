@@ -1,19 +1,20 @@
 import { Button } from "./Button";
-import { closeIcon } from "../../assets/images";
-
+import { closeIconBlack, closeIconWhite } from "../../assets/images";
 
 interface CloseButtonProps {
-  size?: "sx" | "s" | "m" | "l" | "xl";
-  $bgColor?: string;
+  size?: "xs" | "s" | "m" | "l" | "xl";
+  theme?: "dark" | "bright";
   onClick?: () => void;
 }
 
-export function CloseButton({ size = "m", $bgColor, onClick }: CloseButtonProps) {
-  let buttonWidth: string = "";
-  let buttonHeight: string = "";
+export function CloseButton({ size = "m", theme = "dark", onClick }: CloseButtonProps) {
+  let buttonWidth = "";
+  let buttonHeight = "";
+  let bgColor = theme === "dark" ? "#373737" : "#ffffff";
+  let closeIcon = theme === "dark" ? closeIconWhite : closeIconBlack;
 
   switch (size) {
-    case "sx":
+    case "xs":
       buttonWidth = "2rem";
       buttonHeight = "2rem";
       break;
@@ -39,7 +40,7 @@ export function CloseButton({ size = "m", $bgColor, onClick }: CloseButtonProps)
     <Button
       $width={buttonWidth}
       $height={buttonHeight}
-      $bgColor={$bgColor}
+      $bgColor={bgColor}
       $borderRadius="50%"
       onClick={onClick}
     >

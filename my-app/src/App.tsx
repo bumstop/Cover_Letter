@@ -8,7 +8,7 @@ export function App() {
   return (
     <div className="App">
       <div>
-        <CloseButton size="m" $bgColor="#373737" onClick={() => setIsOpen(false)} />
+        <CloseButton size="m" theme="dark" onClick={() => setIsOpen(false)} />
         {isOpen && <StyledDiv>컨텐츠</StyledDiv>}
         <StyledDiv>컨텐츠2</StyledDiv>
       </div>
