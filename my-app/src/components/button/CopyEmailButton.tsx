@@ -1,18 +1,18 @@
+import React from "react";
 import { Button } from "./Button";
-import { blackCloseIcon, whiteCloseIon } from "../../assets/images";
-import { BRIGHT_BTN_COLOR, DARK_BTN_COLOR } from "../../util/constant/constant";
+import { BRIGHT_BTN_COLOR, DARK_BTN_COLOR, EMAIL_TEXT } from "../../util/constant/constant";
+import { blackEmailIcon, whiteEmailIcon } from "../../assets/images";
 
 interface CloseButtonProps {
   size?: "xs" | "s" | "m" | "l" | "xl";
   theme?: "dark" | "bright";
-  onClick?: () => void;
 }
 
-export function CloseButton({ size = "m", theme = "bright", onClick }: CloseButtonProps) {
+export default function CopyEmailButton({ size = "m", theme = "dark" }: CloseButtonProps) {
   let buttonWidth = "";
   let buttonHeight = "";
   let bgColor = theme === "dark" ? DARK_BTN_COLOR : BRIGHT_BTN_COLOR;
-  let closeIcon = theme === "dark" ? whiteCloseIon : blackCloseIcon;
+  let emailIcon = theme === "dark" ? whiteEmailIcon : blackEmailIcon;
 
   switch (size) {
     case "xs":
@@ -37,15 +37,21 @@ export function CloseButton({ size = "m", theme = "bright", onClick }: CloseButt
       break;
   }
 
+  const cilpboardEmail = () => {
+    window.navigator.clipboard.writeText(EMAIL_TEXT).then(() => {
+      alert("이메일이 복사되었습니다!");
+    });
+  };
+
   return (
     <Button
       $width={buttonWidth}
       $height={buttonHeight}
       $bgColor={bgColor}
       $borderRadius="50%"
-      onClick={onClick}
+      onClick={cilpboardEmail}
     >
-      <img width="45%" height="45%" src={closeIcon} alt="close-icon" />
+      <img width="40%" height="40%" src={emailIcon} alt="email-icon" />
     </Button>
   );
 }

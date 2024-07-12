@@ -62,6 +62,7 @@ const StyledButton = styled.button<ButtonStyle>`
   padding: 0;
   font-family: inherit;
   line-height: inherit;
+  caret-color: transparent;
   cursor: pointer;
   &:hover {
     filter: brightness(150%);
