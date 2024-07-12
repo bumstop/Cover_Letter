@@ -1,17 +1,14 @@
 import { CloseButton } from "./components/button/CloseButton";
 import styled from "styled-components";
 import { useState } from "react";
+import FloatingActionButtons from "./components/composite_components/FloatingActionButtons";
 
 export function App() {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="App">
-      <div>
-        <CloseButton size="m" theme="dark" onClick={() => setIsOpen(false)} />
-        {isOpen && <StyledDiv>컨텐츠</StyledDiv>}
-        <StyledDiv>컨텐츠2</StyledDiv>
-      </div>
+    <div className="App" style={{ height: "150vh", backgroundColor: "#373737" }}>
+      <FloatingActionButtons />
     </div>
   );
 }

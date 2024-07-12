@@ -55,7 +55,7 @@ export function Button({
   );
 }
 
-const StyledButton = styled.button<ButtonStyle>`
+export const StyledButton = styled.button<ButtonStyle>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
