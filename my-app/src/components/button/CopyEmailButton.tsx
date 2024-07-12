@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button } from "./Button";
 import { BRIGHT_BTN_COLOR, DARK_BTN_COLOR, EMAIL_TEXT } from "../../util/constant/constant";
 import { blackEmailIcon, whiteEmailIcon } from "../../assets/images";
+import { useHandleButtonEvent } from "../../util/hooks/useHandleButtonEvent";
 
 interface CloseButtonProps {
   size?: "xs" | "s" | "m" | "l" | "xl";
@@ -9,6 +10,7 @@ interface CloseButtonProps {
 }
 
 export default function CopyEmailButton({ size = "m", theme = "dark" }: CloseButtonProps) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
   let buttonWidth = "";
   let buttonHeight = "";
   let bgColor = theme === "dark" ? DARK_BTN_COLOR : BRIGHT_BTN_COLOR;
@@ -43,8 +45,11 @@ export default function CopyEmailButton({ size = "m", theme = "dark" }: CloseBut
     });
   };
 
+  useHandleButtonEvent({ ref: buttonRef, theme: theme });
+
   return (
     <Button
+      ref={buttonRef}
       $width={buttonWidth}
       $height={buttonHeight}
       $bgColor={bgColor}

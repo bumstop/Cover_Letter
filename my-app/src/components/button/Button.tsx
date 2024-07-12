@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, forwardRef, ForwardedRef } from "react";
 import styled, { css } from "styled-components";
 
 export interface ButtonStyle {
@@ -22,22 +22,26 @@ export interface ButtonProps extends ButtonStyle, ButtonFunction {
   children?: ReactNode;
 }
 
-export function Button({
-  $width = "100px",
-  $height = "40px",
-  $bgColor = "transparent",
-  $hasBorder = false,
-  $borderColor = "black",
-  $borderRadius = "4px",
-  $fontSize = "inherit",
-  $fontColor = "black",
-  onClick,
-  onMouseEnter,
-  onMouseLeave,
-  children,
-}: ButtonProps) {
+export const Button = forwardRef(function Button(
+  {
+    $width = "100px",
+    $height = "40px",
+    $bgColor = "transparent",
+    $hasBorder = false,
+    $borderColor = "black",
+    $borderRadius = "4px",
+    $fontSize = "inherit",
+    $fontColor = "black",
+    onClick,
+    onMouseEnter,
+    onMouseLeave,
+    children,
+  }: ButtonProps,
+  ref: ForwardedRef<HTMLButtonElement>
+) {
   return (
     <StyledButton
+      ref={ref}
       $width={$width}
       $height={$height}
       $bgColor={$bgColor}
@@ -53,7 +57,7 @@ export function Button({
       {children}
     </StyledButton>
   );
-}
+});
 
 export const StyledButton = styled.button<ButtonStyle>`
   display: inline-flex;
@@ -64,13 +68,6 @@ export const StyledButton = styled.button<ButtonStyle>`
   line-height: inherit;
   caret-color: transparent;
   cursor: pointer;
-  &:hover {
-    filter: brightness(150%);
-  }
-
-  &:active {
-    filter: brightness(80%);
-  }
   ${({
     $width,
     $height,
